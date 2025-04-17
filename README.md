@@ -9,6 +9,9 @@ This project enables AI models to retrieve player information, ranked stats, cha
 > **Disclaimer:** This is an open-source project *not affiliated with or endorsed by Riot Games.* League of Legends® is a registered trademark of Riot Games, Inc.
 
 ---
+## Demo
+![mcp-riot-lol](https://github.com/user-attachments/assets/ef0c62d7-f99b-4a74-bc7d-8b737bf8fe2a)
+
 
 ## ✨ Features
 
