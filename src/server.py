@@ -245,17 +245,5 @@ async def get_match_summary(match_id: str, puuid: str) -> dict[str, Any] | str:
 
 
 if __name__ == "__main__":
-    # Initialize and run the server
-    # import asyncio
-    # asyncio.run(load_champion_data())
-    mcp.run(transport='stdio')
-    # print(get_summoner_id("지언이랑신길에서","174"))
-    # import asyncio
-
-    # async def test():
-    #     print("🔍 get_top_mastery 테스트 중...")
-    #     result = await get_champion_mastery_tool("지언이랑신길에서","174","아트록스","ko_KR")
-    #     print("결과:", result)
-
-    # asyncio.run(test())
+    mcp.run()
 
