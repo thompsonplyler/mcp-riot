@@ -1,3 +1,4 @@
+[![smithery badge](https://smithery.ai/badge/@jifrozen0110/riot)](https://smithery.ai/server/@jifrozen0110/riot)
 # MCP Riot Server
 
 **MCP-Riot is a community-developed [Model Context Protocol (MCP)](https://github.com/modelcontextprotocol) server that integrates with the Riot Games API** to provide League of Legends data to AI assistants via natural language queries.
