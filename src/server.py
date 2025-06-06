@@ -16,7 +16,7 @@ CHAMPION_MAP: dict[str, dict[int, str]] = {}  # language -> {champ_id: name}
 
 
 async def riot_request(
-    url: str, region: str = "kr", params: dict[str, Any] | None = None
+    url: str, region: str = "na1", params: dict[str, Any] | None = None
 ) -> dict[str, Any] | None:
     headers = {
         "X-Riot-Token": RIOT_API_KEY,
@@ -33,7 +33,7 @@ async def riot_request(
             return None
 
 
-async def get_champion_map(language: str = "ko_KR") -> dict[int, str]:
+async def get_champion_map(language: str = "en_US") -> dict[int, str]:
     if language in CHAMPION_MAP:
         return CHAMPION_MAP[language]
 
@@ -49,7 +49,7 @@ async def get_champion_map(language: str = "ko_KR") -> dict[int, str]:
 
 
 async def get_puuid(game_name: str, tag_line: str) -> str | None:
-    url = f"https://asia.api.riotgames.com/riot/account/v1/accounts/by-riot-id/{game_name}/{tag_line}"
+    url = f"https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/{game_name}/{tag_line}"
     headers = {
         "X-Riot-Token": RIOT_API_KEY,
         "Content-Type": "application/json",
@@ -111,14 +111,14 @@ async def get_top_champions_tool(game_name: str, tag_line: str, language: str = 
 
 async def get_recent_matches(puuid: str, count: int = 3) -> str:
     match_ids = await riot_request(
-        f"/lol/match/v5/matches/by-puuid/{puuid}/ids", region="asia", params={"count": count}
+        f"/lol/match/v5/matches/by-puuid/{puuid}/ids", region="americas", params={"count": count}
     )
     if not match_ids:
         return "No recent matches found."
 
     matches = []
     for match_id in match_ids:
-        match = await riot_request(f"/lol/match/v5/matches/{match_id}", region="asia")
+        match = await riot_request(f"/lol/match/v5/matches/{match_id}", region="americas")
         if match:
             participant = next((p for p in match["info"]["participants"] if p["puuid"] == puuid), None)
             if participant:
@@ -215,7 +215,7 @@ async def get_match_summary(match_id: str, puuid: str) -> dict[str, Any] | str:
 
     Extracts and returns only the relevant stats (KDA, damage, vision, win/loss, etc.) from the match.
     """
-    match = await riot_request(f"/lol/match/v5/matches/{match_id}", region="asia")
+    match = await riot_request(f"/lol/match/v5/matches/{match_id}", region="americas")
     if not match:
         return "Failed to load match data."
 
